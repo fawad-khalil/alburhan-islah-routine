@@ -1,9 +1,11 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, SafeAreaView, Button, Alert } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import axios from 'axios';
 
 // Import Screens
 import SplashScreen from './screens/SplashScreen';
@@ -71,6 +73,9 @@ function MurabbiMainMenu({ navigation }){
           onPress={() => navigation.navigate('TestScreenLink')}
         />
       </View>
+      <View style={styles.my_1}>
+        <Button title="Test API" onPress={fetchData} />
+      </View>
     </View>
   );
 }
@@ -105,6 +110,25 @@ function MyTestingScreen({ navigation }){
       </SafeAreaView>
     </View>
   );
+}
+
+function fetchData(){
+  axios.get(api_url)
+    .then(response => {
+      Alert.alert('Data', JSON.stringify(response.data));
+      // Alert.alert('Data', 'Hello1');
+      // Alert.alert('Data', 'Hello2');
+      
+      // setData(response.data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    })
+    .finally(() => {
+      // setLoading(false);
+    });
+
+  // Alert.alert('Error', 'Failed to fetch data');
 }
 
 const styles = StyleSheet.create({
