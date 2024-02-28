@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Import Screens
 import SplashScreen from './screens/SplashScreen';
+import RoutineSubmissionScreen from './screens/RoutineSubmissionScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Screen name="MainScreenLink" component={MainScreen} />
         <Stack.Screen name="MurabbiMainMenuLink" component={MurabbiMainMenu} />
         <Stack.Screen name="TestScreenLink" component={MyTestingScreen} />
+        <Stack.Screen name="RoutineSubmissionScreen" component={RoutineSubmissionScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -63,6 +65,12 @@ function MurabbiMainMenu({ navigation }){
         <Button
           title='تیسری آپشن'
           onPress={() => navigation.navigate('TestScreenLink')}
+        />
+      </View>
+      <View style={styles.my_1}>
+        <Button
+          title="اپنا معمول بھیجیں"
+          onPress={() => navigation.navigate('RoutineSubmissionScreen')}
         />
       </View>
       <View style={styles.my_1}>
